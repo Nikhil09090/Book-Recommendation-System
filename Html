@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Recommender System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f6f6;
+      padding: 40px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 12px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    #recommendations {
+      margin-top: 20px;
+    }
+    .book {
+      background: #eef;
+      padding: 10px;
+      margin: 8px 0;
+      border-left: 4px solid #4a90e2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Book Recommender</h1>
+    <form id="recommendForm">
+      <label for="genre">Choose a genre:</label>
+      <select id="genre" name="genre">
+        <option value="fiction">Fiction</option>
+        <option value="sci-fi">Science Fiction</option>
+        <option value="fantasy">Fantasy</option>
+        <option value="mystery">Mystery</option>
+        <option value="non-fiction">Non-fiction</option>
+      </select>
+
+      <button type="submit">Get Recommendations</button>
+    </form>
+
+    <div id="recommendations"></div>
+  </div>
+
+  <script>
+    const bookData = {
+      "fiction": ["The Great Gatsby", "To Kill a Mockingbird", "Little Fires Everywhere"],
+      "sci-fi": ["Dune", "Neuromancer", "Ender's Game"],
+      "fantasy": ["The Hobbit", "Harry Potter", "Mistborn"],
+      "mystery": ["Gone Girl", "The Girl with the Dragon Tattoo", "In the Woods"],
+      "non-fiction": ["Sapiens", "Educated", "Atomic Habits"]
+    };
+
+    document.getElementById('recommendForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const genre = document.getElementById('genre').value;
+      const recommendations = bookData[genre] || [];
+      const output = recommendations.map(book => `<div class="book">${book}</div>`).join("");
+      document.getElementById('recommendations').innerHTML = `<h3>Recommended Books:</h3>${output}`;
+    });
+  </script>
+</body>
+</html>
